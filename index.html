@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>CRYPTA Auth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1 class="logo">CRYPTA <span class="highlight">AUTH</span></h1>
+        <button id="add-btn" class="icon-btn" aria-label="Add new token">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+      </header>
+
+      <main class="token-list" id="token-list">
+        <!-- Tokens will be injected here -->
+      </main>
+
+      <!-- Add Token Modal -->
+      <div id="add-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>New Authenticator</h2>
+            <button id="close-modal-btn" class="icon-btn">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          
+          <div class="modal-tabs">
+            <button class="tab active" data-target="manual-entry">Manual Entry</button>
+            <button class="tab" data-target="qr-scan">Scan QR</button>
+          </div>
+
+          <div id="manual-entry" class="tab-content active">
+            <form id="add-form">
+              <div class="input-group">
+                <label for="issuer">Issuer (e.g., GitHub, Google)</label>
+                <input type="text" id="issuer" placeholder="Service name" required />
+              </div>
+              <div class="input-group">
+                <label for="account">Account Name</label>
+                <input type="text" id="account" placeholder="user@email.com" required />
+              </div>
+              <div class="input-group">
+                <label for="secret">Secret Key</label>
+                <input type="text" id="secret" placeholder="JBSWY3DPEHPK3PXP" required autocomplete="off" />
+              </div>
+              <button type="submit" class="primary-btn">Add Token</button>
+            </form>
+          </div>
+
+          <div id="qr-scan" class="tab-content hidden">
+            <div id="reader-container">
+              <div id="reader"></div>
+              <p class="scan-instruction">Point camera at QR code</p>
+            </div>
+            <button id="start-scan-btn" class="primary-btn">Start Camera</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(
+            (registration) => {
+              console.log('ServiceWorker registration successful');
+            },
+            (err) => {
+              console.log('ServiceWorker registration failed: ', err);
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
