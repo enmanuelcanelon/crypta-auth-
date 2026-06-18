@@ -1,9 +1,29 @@
 <div align="center">
   <h1>CRYPTA Auth</h1>
-  <p><strong>Autenticador TOTP offline con cifrado local · PWA + APK</strong></p>
+  <p><strong>Autenticador TOTP offline con cifrado local · App nativa Android</strong></p>
+
+  <br />
+
+  <a href="https://github.com/enmanuelcanelon/crypta-auth-/releases/latest/download/crypta-auth.apk">
+    <img src="https://img.shields.io/badge/Descargar-APK%20Android-a78bfa?style=for-the-badge&logo=android&logoColor=white" alt="Descargar APK" />
+  </a>
+
+  <p style="margin-top: 1rem;">
+    <a href="https://github.com/enmanuelcanelon/crypta-auth-/releases/latest/download/crypta-auth.apk"><strong>⬇ Descargar CRYPTA Auth.apk</strong></a>
+    — un clic, instalar, app nativa (no navegador)
+  </p>
 </div>
 
-CRYPTA Auth es una app ligera, ultra-segura y completamente offline que genera contraseñas de un solo uso basadas en tiempo (TOTP) para autenticación de dos factores (2FA). Alternativa privada y auto-hospedada a Google Authenticator o Authy.
+## Instalar en tu teléfono
+
+1. Pulsa **Descargar APK** arriba (desde el móvil)
+2. Abre el archivo descargado
+3. Si Android lo pide, permite **Instalar apps desconocidas** para Chrome o tu gestor de archivos
+4. Toca **Instalar** → abre **CRYPTA Auth** desde el launcher
+
+> La app se compila automáticamente en cada actualización. Si el enlace aún no funciona, espera 2–3 minutos tras un push o revisa [Releases](https://github.com/enmanuelcanelon/crypta-auth-/releases).
+
+---
 
 Parte del ecosistema **CRYPTA**: privacidad, arquitectura zero-knowledge y estética cyber-gothic minimalista.
 
@@ -18,12 +38,11 @@ Parte del ecosistema **CRYPTA**: privacidad, arquitectura zero-knowledge y esté
 ## Características
 
 - UI minimalista dark mode con acento púrpura
-- PWA instalable (iOS/Android) — funciona offline
+- **App nativa Android** — descarga APK e instala directo
 - Escáner QR integrado
-- APK nativo Android vía Capacitor
 - Vanilla JS — sin frameworks pesados
 
-## Instalación
+## Desarrollo local
 
 ```bash
 git clone https://github.com/enmanuelcanelon/crypta-auth-.git
@@ -32,19 +51,7 @@ npm install
 npm run dev -- --host
 ```
 
-### APK Android
-
-Ver [`BUILD.md`](BUILD.md) para compilar el APK.
-
-```bash
-npm run apk:debug
-```
-
-### PWA en móvil
-
-1. `npm run build && npm run preview -- --host`
-2. Abre la IP en el navegador del móvil
-3. **Añadir a pantalla de inicio**
+Para compilar el APK manualmente, ver [`BUILD.md`](BUILD.md).
 
 ## Stack
 
