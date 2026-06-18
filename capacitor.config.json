@@ -1,0 +1,18 @@
+{
+  "appId": "com.crypta.auth",
+  "appName": "CRYPTA Auth",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false
+  },
+  "plugins": {
+    "PrivacyScreen": {
+      "enable": true
+    }
+  }
+}

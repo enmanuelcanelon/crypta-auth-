@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CRYPTA Auth</string>
+    <string name="title_activity_main">CRYPTA Auth</string>
+    <string name="package_name">com.crypta.auth</string>
+    <string name="custom_url_scheme">com.crypta.auth</string>
+</resources>

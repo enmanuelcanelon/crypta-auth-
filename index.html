@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>CRYPTA Auth</title>
+  </head>
+  <body>
+    <!-- Pantalla de bloqueo -->
+    <div id="lock-screen" class="lock-screen">
+      <div class="lock-content">
+        <div class="lock-logo">CRYPTA</div>
+        <h2 id="lock-title">CRYPTA</h2>
+        <p id="lock-subtitle" class="lock-subtitle">Introduce tu contraseña maestra</p>
+        <form id="lock-form" autocomplete="off">
+          <div class="input-group">
+            <input type="password" id="lock-password" placeholder="Contraseña maestra" required minlength="8" autocomplete="new-password" inputmode="text" />
+          </div>
+          <div class="input-group hidden" id="lock-confirm-group">
+            <input type="password" id="lock-confirm" placeholder="Confirmar contraseña" minlength="8" autocomplete="new-password" />
+          </div>
+          <p id="lock-error" class="lock-error" role="alert"></p>
+          <button type="submit" id="lock-submit" class="primary-btn">Desbloquear</button>
+        </form>
+        <p class="lock-hint">Cifrado AES-256 · Solo en tu dispositivo</p>
+      </div>
+    </div>
+
+    <div id="app" class="locked">
+      <header class="header">
+        <h1 class="logo">CRYPTA</h1>
+        <div class="header-actions">
+          <button id="lock-btn" class="icon-btn" aria-label="Bloquear">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </button>
+          <button id="add-btn" class="icon-btn" aria-label="Añadir token">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="token-list" id="token-list"></main>
+
+      <div id="add-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Nuevo token</h2>
+            <button id="close-modal-btn" class="icon-btn" aria-label="Cerrar">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+
+          <div class="modal-tabs">
+            <button class="tab active" data-target="manual-entry">Manual</button>
+            <button class="tab" data-target="qr-scan">QR</button>
+          </div>
+
+          <div id="manual-entry" class="tab-content active">
+            <form id="add-form" autocomplete="off">
+              <div class="input-group">
+                <label for="issuer">Servicio</label>
+                <input type="text" id="issuer" placeholder="GitHub, Google…" required />
+              </div>
+              <div class="input-group">
+                <label for="account">Cuenta</label>
+                <input type="text" id="account" placeholder="usuario@email.com" required />
+              </div>
+              <div class="input-group">
+                <label for="secret">Clave secreta</label>
+                <input type="password" id="secret" placeholder="Base32" required autocomplete="off" />
+              </div>
+              <button type="submit" class="primary-btn">Añadir</button>
+            </form>
+          </div>
+
+          <div id="qr-scan" class="tab-content">
+            <div id="reader-container">
+              <div id="reader"></div>
+              <p class="scan-instruction">Apunta al código QR</p>
+            </div>
+            <button id="start-scan-btn" class="primary-btn">Iniciar cámara</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
